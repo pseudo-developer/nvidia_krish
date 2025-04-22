@@ -22,7 +22,12 @@ llm = ChatNVIDIA(model="meta/llama3-70b-instruct")
 
 def vector_embedding():
 
+    # if "vectors" not in st.session_state or st.session_state.vectors is None:
+    #     st.warning("Please embed the documents first using the 'Documents Embedding' button.")
+
+
     if "vectors" not in st.session_state:
+        st.session_state.vectors = None
 
         st.session_state.embeddings=NVIDIAEmbeddings()
         st.session_state.loader=PyPDFDirectoryLoader("./us_census") ## Data Ingestion

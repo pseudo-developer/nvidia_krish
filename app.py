@@ -4,7 +4,7 @@ import httpx
 client = OpenAI(
   base_url = "https://integrate.api.nvidia.com/v1",
   api_key = "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",
-  http_client=httpx.Client(verify=False)    # <-- only for local/testing
+  # http_client=httpx.Client(verify=False)    # <-- only for local/testing
 )
 
 completion = client.chat.completions.create(
@@ -16,6 +16,6 @@ completion = client.chat.completions.create(
   stream=False
 )
 
-# print(completion.choices[0].message)
-print(completion)
+print(completion.choices[0].message.content)
+# print(completion)
 
