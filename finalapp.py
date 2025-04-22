@@ -27,7 +27,7 @@ def vector_embedding():
 
 
     if "vectors" not in st.session_state:
-        st.session_state.vectors = None
+        st.session_state.vectors = None     # additional step apart from KRISH'S VIDEO
 
         st.session_state.embeddings=NVIDIAEmbeddings()
         st.session_state.loader=PyPDFDirectoryLoader("./us_census") ## Data Ingestion
