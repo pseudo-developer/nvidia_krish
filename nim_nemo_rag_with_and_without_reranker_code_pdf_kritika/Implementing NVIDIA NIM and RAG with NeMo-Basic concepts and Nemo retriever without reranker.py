@@ -87,8 +87,10 @@ prompt = ChatPromptTemplate.from_messages([
 
 
 # Format the context into the prompt
-formatted_prompt = prompt.format_prompt(context="\n\n".join(context_snippets),
-question=query)
+formatted_prompt = prompt.format_prompt(
+    context="\n\n".join(context_snippets),
+    question=query
+)
 # The prompt object can combine with the llm in a chain, but we'll call the llm directly for simplicity:
 response = llm_model(formatted_prompt.to_messages())
 print("AI Answer:", response.content)
