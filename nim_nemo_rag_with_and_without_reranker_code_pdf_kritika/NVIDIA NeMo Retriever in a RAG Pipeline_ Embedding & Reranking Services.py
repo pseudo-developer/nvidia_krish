@@ -75,9 +75,26 @@ llm = ChatNVIDIA(
     nvidia_api_key= api_key
 )
 # Construct a prompt with the top reranked context
-context_text = "\n".join([doc.page_content for doc in reranked_docs])
-prompt = f"Context:\n{context_text}\n\nQuestion: {query}\nAnswer:"
-response = llm.invoke(prompt)
+# context_text = "\n".join([doc.page_content for doc in reranked_docs])
+# prompt = f"Context:\n{context_text}\n\nQuestion: {query}\nAnswer:"
+# response = llm.invoke(prompt)
+# print(response.content)
+
+# Use LangChain prompt template
+prompt_template = ChatPromptTemplate.from_messages([
+    ("system", 
+     "You are an AI assistant. Answer the user's question based on the given context, in just ONE WORD.\n"
+     "If the answer is not in the context, say 'I don't know.'\n"
+     "Context:\n{context}"),
+    ("user", "{question}")
+])
+
+formatted_prompt = prompt_template.format_prompt(
+    context="\n".join([doc.page_content for doc in reranked_docs]),
+    question=query
+)
+
+response = llm.invoke(formatted_prompt.to_messages())
 print(response.content)
 
 
