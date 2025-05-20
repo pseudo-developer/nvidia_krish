@@ -3,6 +3,7 @@ from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings, ChatNVIDIA
 # from langchain_nvidia_ai_endpoints.embeddings import NeMoEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_nvidia_ai_endpoints.reranking import NVIDIARerank
+from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 
 # Step 1: Load .env file (recommended way to handle secrets)
